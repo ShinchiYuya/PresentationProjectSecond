@@ -8,6 +8,9 @@ TagManager:
   - BackGround
   - AllyCastle
   - EnemyCastle
+  - SpawnArea
+  - Ally
+  - Enemy
   layers:
   - Default
   - TransparentFX
