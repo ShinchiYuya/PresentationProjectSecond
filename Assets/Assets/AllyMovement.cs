@@ -6,15 +6,16 @@ public class AllyMovement : MonoBehaviour
 {
     [SerializeField] float _speed = 5f;
     [SerializeField] float _distanceToCastle = 3f;
+    [SerializeField] Animator _animator = null;
 
     private Rigidbody2D _rb2d;
     private bool _isWalking = true;
-
     private GameObject _enemyCastle;
 
     void Start()
     {
         _rb2d = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
 
         GameObject[] enemyCastles = GameObject.FindGameObjectsWithTag("EnemyCastle");
         if (enemyCastles.Length > 0)
@@ -31,7 +32,6 @@ public class AllyMovement : MonoBehaviour
             }
         }
     }
-
     void Update()
     {
         if (_isWalking && _enemyCastle != null)
@@ -48,5 +48,8 @@ public class AllyMovement : MonoBehaviour
                 _rb2d.velocity = new Vector2(_speed, _rb2d.velocity.y);
             }
         }
+
+        _animator.SetBool("IsWalking", _isWalking);
+
     }
 }
