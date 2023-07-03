@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class AllyMovement : MonoBehaviour
 {
-    [SerializeField] float _speed = 5f;
-    [SerializeField] float _stopDistance = 1.5f;
+    [SerializeField] float _speed = 3f;
+    [SerializeField] float _stopDistance = 1.0f;
     [SerializeField] Animator _animator;
     private Rigidbody2D _rb2d;
     private bool _isWalking = true;
