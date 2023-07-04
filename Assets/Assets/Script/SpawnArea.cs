@@ -7,24 +7,31 @@ public class SpawnArea : MonoBehaviour
     /// <summary>敵のプレハブ</summary>
     [SerializeField] GameObject _enemyPrefab;
     /// <summary>キーを押すことのできる間隔</summary>
-    [SerializeField]  float _nextTapInterval = 5;//
+    [SerializeField] float _nextTapInterval = 5f;
     /// <summary>敵生成エリアのコライダー</summary>
     [SerializeField] Collider2D _spawnArea;
+    /// <summary>次にキーが押せる時間</summary>
+    private float _nextTapTime = 0f; 
+
     // Start is called before the first frame update
     void Start()
     {
         _spawnArea = GetComponent<Collider2D>();
+        _nextTapTime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) // キーボードの1が押された場合
+        if (Input.GetKeyDown(KeyCode.Alpha1) && Time.time >= _nextTapTime) // キーボードの1が押された場合かつ次のタップ時間を過ぎている場合
         {
             // エリア内のランダムな位置に敵を生成
             Vector2 spawnPosition = GetRandomPositionInArea();
+
             Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
-            Time.timeScale = _nextTapInterval;
+
+            // 次のタップ時間を更新
+            _nextTapTime = Time.time + _nextTapInterval;
         }
     }
 
