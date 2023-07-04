@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class AllyMovement : MonoBehaviour
+public class AllyBasicMovement : MonoBehaviour
 {
     [SerializeField] float _speed = 3f;
     [SerializeField] float _stopDistance = 1.0f;

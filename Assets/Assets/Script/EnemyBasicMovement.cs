@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyBasicMovement : MonoBehaviour
 {
     [SerializeField] float speed = 3f;
     [SerializeField] float stopDistance = 1.0f;

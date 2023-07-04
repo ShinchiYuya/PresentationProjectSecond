@@ -6,10 +6,7 @@ public class SpawnArea : MonoBehaviour
 {
     public GameObject enemyPrefab; // 敵のプレハブ
     public float spawnInterval = 2f; // 敵の生成間隔
-
     private Collider2D spawnArea; // 敵生成エリアのコライダー
-    private float spawnTimer = 0f; // スポーンのタイマー
-
     // Start is called before the first frame update
     void Start()
     {
