@@ -9,6 +9,7 @@ public class AllyBasicMovement : MonoBehaviour
     [SerializeField] Animator _animator;
     [SerializeField, Tooltip("ƒ‚ƒu‚ÌÅ‘å‘Ì—ÍÝ’è")] int _maxHealth = 100;
     [SerializeField, Tooltip("Œ»Ý‚Ì‘Ì—Í")] int _currentHealth;
+    [SerializeField] int _damage = 10;
 
     private Rigidbody2D _rb2d;
     private bool _isWalking = true;
@@ -109,7 +110,7 @@ public class AllyBasicMovement : MonoBehaviour
 
     void TakeDamage()
     {
-        _maxHealth -= damage;
+        _maxHealth -= _damage;
         if (_currentHealth > 0)
         {
             Die();
