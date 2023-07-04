@@ -7,6 +7,9 @@ public class AllyBasicMovement : MonoBehaviour
     [SerializeField] float _speed = 3f;
     [SerializeField] float _stopDistance = 1.0f;
     [SerializeField] Animator _animator;
+    [SerializeField, Tooltip("ƒ‚ƒu‚ÌÅ‘å‘Ì—ÍÝ’è")] int _maxHealth = 100;
+    [SerializeField, Tooltip("Œ»Ý‚Ì‘Ì—Í")] int _currentHealth;
+
     private Rigidbody2D _rb2d;
     private bool _isWalking = true;
     private GameObject _enemyCastle;
@@ -102,5 +105,19 @@ public class AllyBasicMovement : MonoBehaviour
     {
         // UŒ‚‚Ìˆ—‚ð‹Lq‚·‚é
 
+    }
+
+    void TakeDamage()
+    {
+        _maxHealth -= damage;
+        if (_currentHealth > 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 }

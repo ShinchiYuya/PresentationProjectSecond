@@ -7,6 +7,9 @@ public class EnemyBasicMovement : MonoBehaviour
     [SerializeField] float speed = 3f;
     [SerializeField] float stopDistance = 1.0f;
     [SerializeField] Animator animator;
+    [SerializeField, Tooltip("ƒ‚ƒu‚ÌÅ‘å‘Ì—ÍÝ’è")] int _maxHealth = 100;
+    [SerializeField, Tooltip("Œ»Ý‚Ì‘Ì—Í")] int _currentHealth;
+    [SerializeField] int _damage = 10;
 
     private Rigidbody2D rb2d;
     private bool isWalking = true;
@@ -108,5 +111,19 @@ public class EnemyBasicMovement : MonoBehaviour
     void Attack()
     {
         // UŒ‚‚Ìˆ—‚ð‹Lq‚·‚é
+    }
+
+    public void TakeDamage()
+    {
+        _maxHealth -= _damage;
+        if (_currentHealth > 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 }
