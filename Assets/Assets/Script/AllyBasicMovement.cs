@@ -118,7 +118,7 @@ public abstract class AllyBasicMovement : MonoBehaviour
         }
     }
 
-    protected void OnCollisionEnter2D(Collision2D collision)
+    protected private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision != null && collision.gameObject.CompareTag("Enemy"))
         {
