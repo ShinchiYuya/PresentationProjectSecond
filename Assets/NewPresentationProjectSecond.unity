@@ -1363,6 +1363,56 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &656601423 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8126408574230146764, guid: 5d1c15896a823bf42bc1044539c936ea, type: 3}
+  m_PrefabInstance: {fileID: 9022217356375223596}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &656601424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656601423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7ada6fe529cbd4aa7fe6c5aebe88d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
+  _stopDistance: 1
+  _animator: {fileID: 656601427}
+  _maxHealth: 100
+  _currentHealth: 100
+  _damage: 0
+--- !u!95 &656601427 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6531973314987825859, guid: 5d1c15896a823bf42bc1044539c936ea, type: 3}
+  m_PrefabInstance: {fileID: 9022217356375223596}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &656601430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656601423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d991f353bdf6cb49a32e51ba3d2f34f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
+  _stopDistance: 1
+  _animator: {fileID: 0}
+  _maxHealth: 0
+  _currentHealth: 0
+  _damage: 0
+  _rb2d: {fileID: 0}
+  _isWalking: 1
+  _enemyCastle: {fileID: 0}
+  _enemyCharacter: {fileID: 0}
 --- !u!1 &681042627
 GameObject:
   m_ObjectHideFlags: 0
@@ -4216,10 +4266,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2381119695567365929, guid: 5d1c15896a823bf42bc1044539c936ea, type: 3}
-      propertyPath: _damage
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7879298407222033058, guid: 5d1c15896a823bf42bc1044539c936ea, type: 3}
       propertyPath: m_RootOrder
       value: 7

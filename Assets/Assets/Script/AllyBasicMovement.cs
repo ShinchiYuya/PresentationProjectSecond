@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class AllyBasicMovement : MonoBehaviour
+public abstract class AllyBasicMovement : MonoBehaviour
 {
     [SerializeField, Header("移動スピード")] protected float _speed = 3f;
     [SerializeField, Header("相手との距離")] protected float _stopDistance = 1.0f;
@@ -20,12 +20,12 @@ public class AllyBasicMovement : MonoBehaviour
     {
         _rb2d = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-        _animator.SetBool("Walking", true);
+        _animator.SetBool("FlogDef", true);
 
         FindEnemyCastle();
         FindEnemyCharacter();
     }
-    void Update()
+    protected void Update()
     {
         if (_isWalking)
         {
@@ -35,12 +35,12 @@ public class AllyBasicMovement : MonoBehaviour
                 if (distanceToCastle > _stopDistance)
                 {
                     _rb2d.velocity = new Vector2(_speed, _rb2d.velocity.y);
-                    _animator.SetBool("IsWalking", true);
+                    _animator.Play("FlogDef");
                 }
                 else
                 {
                     _rb2d.velocity = Vector2.zero;
-                    _animator.SetBool("IsWalking", false);
+                    _animator.Play("Attack");
                     Attack();
                 }
             }
@@ -61,7 +61,7 @@ public class AllyBasicMovement : MonoBehaviour
             }
         }
     }
-    void FindEnemyCastle()
+    protected void FindEnemyCastle()
     {
         GameObject[] enemyCastles = GameObject.FindGameObjectsWithTag("EnemyCastle");
         if (enemyCastles.Length > 0)
@@ -83,7 +83,7 @@ public class AllyBasicMovement : MonoBehaviour
             Debug.Log("EnemyCastleのタグを持ってるやつおらんぞい");
         }
     }
-    void FindEnemyCharacter()
+    protected void FindEnemyCharacter()
     {
         GameObject[] enemyCharacters = GameObject.FindGameObjectsWithTag("Enemy");
         if (enemyCharacters.Length > 0)
@@ -105,13 +105,9 @@ public class AllyBasicMovement : MonoBehaviour
             Debug.Log("敵がいないよーん");
         }
     }
-    void Attack()
-    {
-        // 攻撃の処理を記述する
+    public abstract void Attack();
 
-    }
-
-    void TakeDamage()
+    protected void TakeDamage()
     {
         _maxHealth -= _damage;
         StartCoroutine(DamageCoroutine(1f));
@@ -122,27 +118,23 @@ public class AllyBasicMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision != null && collision.gameObject.CompareTag("Wepon"))
-        {
-            TakeDamage();
-        }
-
         if (collision != null && collision.gameObject.CompareTag("Enemy"))
         {
             StartCoroutine(DamageCoroutine(1f));
+            TakeDamage();
         }
     }
 
-    IEnumerator DamageCoroutine(float duration)
+    protected IEnumerator DamageCoroutine(float duration)
     {
         _animator.Play("DamageRed");
         yield return new WaitForSeconds(duration); // 指定した時間だけ待機
         _animator.Play("FlogAnimation");
     }
 
-    void Die()
+    protected void Die()
     {
         Destroy(gameObject);
     }

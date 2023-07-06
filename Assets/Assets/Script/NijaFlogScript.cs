@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class NijaFlogScript : AllyBasicMovement
@@ -15,5 +14,17 @@ public class NijaFlogScript : AllyBasicMovement
         Rigidbody2D _rb2d;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision != null && collision.gameObject.CompareTag("Enemy"))
+        {
+            Attack();
+        }
+    }
 
+    public override void Attack()
+    {
+        _animation = GetComponent<Animation>();
+        _animation.Play("Attack");
+    }
 }
