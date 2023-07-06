@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EnemyBasicMovement : MonoBehaviour
 {
-    [SerializeField] float speed = 3f;
-    [SerializeField] float stopDistance = 1.0f;
-    [SerializeField] Animator animator;
-    [SerializeField, Tooltip("モブの最大体力設定")] int _maxHealth = 100;
-    [SerializeField, Tooltip("現在の体力")] int _currentHealth;
-    [SerializeField] int _damage = 10;
+    [SerializeField, Header("移動スピード")] float speed = 3f;
+    [SerializeField, Header("相手との距離")] float stopDistance = 1.0f;
+    [SerializeField, Header("アニメーター")] Animator animator;
+    [SerializeField, Header("最大体力")] int _maxHealth = 100;
+    [SerializeField, Header("現在の体力")] int _currentHealth;
+    [SerializeField, Header("与えるダメージ")] int _damage;
 
     private Rigidbody2D rb2d;
     private bool isWalking = true;

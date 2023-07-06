@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SpawnArea : MonoBehaviour
 {
-    [SerializeField,Tooltip("これは敵のプレハブです")] GameObject _enemyPrefab;
-    [SerializeField,Tooltip("キーを押すことのできる間隔")] float _nextTapInterval = 5f;
-    /// <summary>敵生成エリアのコライダー</summary>
-    [SerializeField, Tooltip("モブ生成コライダー")] Collider2D _spawnArea;
+    [SerializeField,Header("エネミープレハブ")] GameObject _enemyPrefab;
+    [SerializeField,Header("次にキーを押すまでのインターバル")] float _nextTapInterval = 5f;
+    [SerializeField, Header("スポーンエリア")] Collider2D _spawnArea;
+
     /// <summary>次にキーが押せる時間</summary>
     private float _nextTapTime = 0f; 
 

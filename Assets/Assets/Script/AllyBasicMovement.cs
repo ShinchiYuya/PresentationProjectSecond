@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AllyBasicMovement : MonoBehaviour
 {
-    [SerializeField] float _speed = 3f;
-    [SerializeField] float _stopDistance = 1.0f;
-    [SerializeField] Animator _animator;
-    [SerializeField, Tooltip("モブの最大体力設定")] int _maxHealth = 100;
-    [SerializeField, Tooltip("現在の体力")] int _currentHealth;
-    [SerializeField] int _damage = 10;
+    [SerializeField, Header("移動スピード")] protected float _speed = 3f;
+    [SerializeField, Header("相手との距離")] protected float _stopDistance = 1.0f;
+    [SerializeField, Header("アニメーター")] Animator _animator;
+    [SerializeField, Header("最大体力")] protected int _maxHealth;
+    [SerializeField, Header("現在の体力")] protected int _currentHealth;
+    [SerializeField, Header("与えるダメージ")] protected int _damage;
 
     private Rigidbody2D _rb2d;
     private bool _isWalking = true;
@@ -78,7 +79,8 @@ public class AllyBasicMovement : MonoBehaviour
         }
         else
         {
-            // タグ "EnemyCastle" を持つオブジェクトが見つからなかった場合の処理を記述する（例えばエラーメッセージの表示など）
+            // タグ "EnemyCastle" を持つオブジェクトが見つからなかった場合の処理を記述する（例えばエラーメッセージの表示など)
+            Debug.Log("EnemyCastleのタグを持ってるやつおらんぞい");
         }
     }
     void FindEnemyCharacter()
@@ -100,6 +102,7 @@ public class AllyBasicMovement : MonoBehaviour
         else
         {
             // タグ "Enemy" を持つオブジェクトが見つからなかった場合の処理を記述する（例えばエラーメッセージの表示など）
+            Debug.Log("敵がいないよーん");
         }
     }
     void Attack()
@@ -111,10 +114,32 @@ public class AllyBasicMovement : MonoBehaviour
     void TakeDamage()
     {
         _maxHealth -= _damage;
+        StartCoroutine(DamageCoroutine(1f));
+
         if (_currentHealth > 0)
         {
             Die();
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision != null && collision.gameObject.CompareTag("Wepon"))
+        {
+            TakeDamage();
+        }
+
+        if (collision != null && collision.gameObject.CompareTag("Enemy"))
+        {
+            StartCoroutine(DamageCoroutine(1f));
+        }
+    }
+
+    IEnumerator DamageCoroutine(float duration)
+    {
+        _animator.Play("DamageRed");
+        yield return new WaitForSeconds(duration); // 指定した時間だけ待機
+        _animator.Play("FlogAnimation");
     }
 
     void Die()
