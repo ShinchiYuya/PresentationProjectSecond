@@ -11,6 +11,7 @@ TagManager:
   - SpawnArea
   - Ally
   - Enemy
+  - Weapon
   layers:
   - Default
   - TransparentFX
