@@ -4,7 +4,6 @@ using UnityEngine;
 public class NijaFlogScript : AllyBasicMovement
 {
     Animation _animation;
-    //Rigidbody2D _rb2d; エラーの原因だっぴ♡
 
     void Start()
     {

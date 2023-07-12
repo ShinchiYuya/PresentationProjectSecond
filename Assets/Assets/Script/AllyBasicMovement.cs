@@ -27,8 +27,11 @@ public abstract class AllyBasicMovement : MonoBehaviour
     }
     protected void Update()
     {
-        if (_isWalking)
-        {
+        Walking();
+    }
+
+    private void Walking()
+    {
             if (_enemyCastle != null)
             {
                 float distanceToCastle = Vector2.Distance(transform.position, _enemyCastle.transform.position);
@@ -59,8 +62,8 @@ public abstract class AllyBasicMovement : MonoBehaviour
                     Attack();
                 }
             }
-        }
     }
+
     protected void FindEnemyCastle()
     {
         GameObject[] enemyCastles = GameObject.FindGameObjectsWithTag("EnemyCastle");

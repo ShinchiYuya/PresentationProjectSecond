@@ -19,9 +19,14 @@ public class SpawnArea : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && Time.time >= _nextTapTime) // キーボードの1が押された場合かつ次のタップ時間を過ぎている場合
+        //Spawn();    
+    }
+
+    public void Spawn()
+    {
+        if (Time.time >= _nextTapTime) //次のタップ時間を過ぎている場合
         {
             // エリア内のランダムな位置に敵を生成
             Vector2 spawnPosition = GetRandomPositionInArea();
